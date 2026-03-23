@@ -73,6 +73,36 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     sendResponse({ ok: true });
     return true;
   }
+
+  if (message.type === "FETCH_INSIGHTS") {
+    const { barcode, sessionId, language } = message;
+    fetch("http://localhost:8000/product-insights", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        barcode,
+        session_id: sessionId || null,
+        language: language || "en",
+      }),
+    })
+      .then(async (resp) => {
+        if (!resp.ok) {
+          let detail = `HTTP ${resp.status}`;
+          try {
+            const err = await resp.json();
+            if (err && err.detail) detail = `${detail}: ${err.detail}`;
+          } catch {}
+          sendResponse({ ok: false, error: detail });
+          return;
+        }
+        const data = await resp.json();
+        sendResponse({ ok: true, data });
+      })
+      .catch((err) => {
+        sendResponse({ ok: false, error: err?.message || "Failed to fetch insights" });
+      });
+    return true; // async response
+  }
 });
 
 // On extension install / update: clear old session data

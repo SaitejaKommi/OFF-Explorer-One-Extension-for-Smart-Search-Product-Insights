@@ -25,6 +25,7 @@ class Settings(BaseSettings):
     slm_model: str = "phi3:mini"       # Ollama model tag
     ollama_base_url: str = "http://localhost:11434"
     ollama_timeout: float = 30.0       # seconds
+    off_api_timeout: float = 8.0       # seconds
 
     # Search defaults
     default_result_limit: int = 20

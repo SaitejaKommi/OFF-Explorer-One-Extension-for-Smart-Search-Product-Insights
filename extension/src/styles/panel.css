@@ -2,14 +2,16 @@
 
 :root {
   --panel-bg: #ffffff;
-  --panel-border: #e0e0e0;
-  --primary: #2a7c3f;
+  --panel-border: #d5e8d5;
+  --primary: #2e7d32;
+  --primary-dark: #1b5e20;
+  --off-blue: #1976d2;
   --danger: #c62828;
   --warning-bg: #fff3e0;
   --positive-bg: #e8f5e9;
   --text: #212121;
-  --text-muted: #757575;
-  --radius: 8px;
+  --text-muted: #616161;
+  --radius: 10px;
 }
 
 #off-insight-panel {
@@ -19,13 +21,13 @@
   width: 320px;
   max-height: calc(100vh - 100px);
   overflow-y: auto;
-  background: var(--panel-bg);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fcf8 100%);
   border: 1px solid var(--panel-border);
   border-right: none;
   border-radius: var(--radius) 0 0 var(--radius);
-  box-shadow: -3px 4px 16px rgba(0,0,0,0.15);
+  box-shadow: -6px 8px 26px rgba(0,0,0,0.18);
   z-index: 99999;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: "Segoe UI", "Trebuchet MS", Verdana, sans-serif;
   font-size: 13px;
   color: var(--text);
 }
@@ -34,7 +36,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--primary);
+  background: linear-gradient(180deg, #43a047 0%, var(--primary) 100%);
   color: white;
   padding: 10px 14px;
   border-radius: var(--radius) 0 0 0;
@@ -69,7 +71,7 @@
 }
 .off-nova {
   display: inline-block;
-  background: #546e7a;
+  background: var(--off-blue);
   padding: 2px 8px;
   border-radius: 4px;
   color: white;
@@ -85,8 +87,7 @@
 }
 .off-expl {
   font-size: 11px;
-  color: #5c6bc0;
-  font-style: italic;
+  color: var(--off-blue);
   margin: 4px 0;
   line-height: 1.4;
 }
@@ -120,7 +121,7 @@
 .off-positive { color: #2e7d32; }
 
 #off-panel-body section a {
-  color: var(--primary);
+  color: var(--off-blue);
   text-decoration: none;
   font-size: 12px;
 }
@@ -128,10 +129,11 @@
 
 .off-slm-badge {
   font-size: 11px;
-  color: #7b1fa2;
+  color: var(--primary-dark);
   border-top: 1px solid var(--panel-border);
   padding-top: 8px;
   margin-top: 8px;
+  font-weight: 600;
 }
 
 .off-error { color: var(--danger); font-size: 12px; }

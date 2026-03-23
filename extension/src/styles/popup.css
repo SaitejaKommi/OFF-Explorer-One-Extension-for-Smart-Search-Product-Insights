@@ -1,32 +1,43 @@
 /* popup.css – Search Mode Popup Styles */
 
 :root {
-  --primary: #2a7c3f;
-  --primary-light: #e8f5e9;
+  --primary: #2e7d32;
+  --primary-dark: #1b5e20;
+  --primary-light: #eaf6ea;
+  --accent: #ff9800;
+  --off-blue: #1976d2;
   --danger: #c62828;
   --warning: #f57f17;
   --text: #212121;
-  --text-muted: #757575;
-  --bg: #ffffff;
-  --border: #e0e0e0;
-  --radius: 8px;
-  --shadow: 0 2px 8px rgba(0,0,0,0.12);
+  --text-muted: #616161;
+  --bg: #f6fbf6;
+  --surface: #ffffff;
+  --border: #d5e8d5;
+  --radius: 10px;
+  --shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: "Segoe UI", "Trebuchet MS", Verdana, sans-serif;
   font-size: 14px;
   color: var(--text);
-  background: var(--bg);
+  background: linear-gradient(180deg, #f8fcf8 0%, var(--bg) 100%);
   width: 380px;
   min-height: 200px;
   max-height: 600px;
   overflow-y: auto;
 }
 
-#app { padding: 12px; }
+#app {
+  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin: 8px;
+  box-shadow: var(--shadow);
+}
 
 /* Header */
 header {
@@ -34,22 +45,22 @@ header {
   align-items: center;
   gap: 8px;
   margin-bottom: 12px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 2px solid #e6f2e6;
   padding-bottom: 8px;
 }
 .logo { width: 28px; height: 28px; }
-h1 { font-size: 16px; font-weight: 700; color: var(--primary); }
+h1 { font-size: 17px; font-weight: 700; color: var(--primary-dark); }
 
 /* Status Banner */
 .status-banner {
-  background: #fff3e0;
-  border: 1px solid #ff9800;
+  background: #fff8e8;
+  border: 1px solid #f5cf80;
   border-radius: var(--radius);
   padding: 6px 10px;
   font-size: 12px;
   margin-bottom: 10px;
 }
-.status-banner a { color: var(--primary); }
+.status-banner a { color: var(--off-blue); font-weight: 600; }
 
 /* Search Box */
 .search-box {
@@ -64,20 +75,23 @@ h1 { font-size: 16px; font-weight: 700; color: var(--primary); }
   padding: 8px 10px;
   font-size: 13px;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
-#search-input:focus { border-color: var(--primary); }
+#search-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.14);
+}
 #search-btn {
-  background: var(--primary);
+  background: linear-gradient(180deg, #42a047 0%, var(--primary) 100%);
   color: white;
   border: none;
   border-radius: var(--radius);
   padding: 8px 12px;
   cursor: pointer;
   font-size: 14px;
-  transition: background 0.2s;
+  transition: filter 0.2s;
 }
-#search-btn:hover { background: #1b5e20; }
+#search-btn:hover { filter: brightness(0.95); }
 #search-btn:disabled { background: #aaa; cursor: not-allowed; }
 
 .hints {
@@ -104,7 +118,8 @@ h1 { font-size: 16px; font-weight: 700; color: var(--primary); }
 }
 
 .notice {
-  background: #e3f2fd;
+  background: #edf7ff;
+  border: 1px solid #c9e5ff;
   border-radius: var(--radius);
   padding: 6px 10px;
   font-size: 12px;
@@ -124,7 +139,8 @@ h1 { font-size: 16px; font-weight: 700; color: var(--primary); }
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 8px 10px;
-  background: #fafafa;
+  background: #ffffff;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
 }
 .result-main {
   display: flex;
@@ -153,11 +169,12 @@ h1 { font-size: 16px; font-weight: 700; color: var(--primary); }
 .expl-tag {
   display: inline-block;
   background: var(--primary-light);
+  border: 1px solid #cfe6cf;
   border-radius: 4px;
   padding: 1px 5px;
   margin-right: 3px;
 }
-.result-link { font-size: 11px; color: var(--primary); text-decoration: none; }
+.result-link { font-size: 11px; color: var(--off-blue); text-decoration: none; }
 .result-link:hover { text-decoration: underline; }
 
 .no-results { color: var(--text-muted); font-size: 12px; text-align: center; padding: 12px; }
@@ -176,9 +193,12 @@ h1 { font-size: 16px; font-weight: 700; color: var(--primary); }
   font-size: 12px;
   outline: none;
 }
-#refine-input:focus { border-color: var(--primary); }
+#refine-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.14);
+}
 #refine-btn {
-  background: var(--primary);
+  background: linear-gradient(180deg, #43a047 0%, var(--primary) 100%);
   color: white;
   border: none;
   border-radius: var(--radius);

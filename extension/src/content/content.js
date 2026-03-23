@@ -12,8 +12,6 @@
 (function () {
   "use strict";
 
-  const BASE_URL = "http://localhost:8000";
-
   // -------------------------------------------------------------------------
   // Helpers
   // -------------------------------------------------------------------------
@@ -188,15 +186,18 @@
     createPanel(lang);
 
     try {
-      const resp = await fetch(`${BASE_URL}/product-insights`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ barcode, session_id: sessionId, language: lang }),
-      });
+      const result = await new Promise((resolve) =>
+        chrome.runtime.sendMessage(
+          { type: "FETCH_INSIGHTS", barcode, sessionId, language: lang },
+          resolve
+        )
+      );
 
-      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-      const data = await resp.json();
-      renderInsights(data, lang);
+      if (!result || !result.ok) {
+        throw new Error(result?.error || "Failed to fetch insights");
+      }
+
+      renderInsights(result.data, lang);
     } catch (err) {
       const body = document.getElementById("off-panel-body");
       if (body) {

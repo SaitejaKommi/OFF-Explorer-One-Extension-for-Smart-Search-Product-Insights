@@ -12,6 +12,7 @@ from backend.models.schemas import InsightRequest, InsightResponse
 from backend.services.context_manager import context_manager
 from backend.services.duckdb_service import duckdb_service
 from backend.services.insight_engine import InsightEngine
+from backend.services.off_api_service import off_api_service
 from backend.services.ollama_service import ollama_service
 
 router = APIRouter()
@@ -29,16 +30,27 @@ def _extract_primary_category(categories_tags: str | None) -> str:
 @router.post("", response_model=InsightResponse)
 async def product_insights(req: InsightRequest) -> InsightResponse:
     product = duckdb_service.fetch_product_by_barcode(req.barcode)
+    product_source = "duckdb"
     if not product:
-        raise HTTPException(status_code=404, detail=f"Product {req.barcode} not found.")
+        product = off_api_service.fetch_product_by_barcode(req.barcode)
+        product_source = "off_api"
+    if not product:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Product {req.barcode} not found in local parquet data or OFF API.",
+        )
 
     # Fetch alternatives in the same category
     primary_category = _extract_primary_category(str(product.get("categories_tags", "")))
-    alternatives_raw = duckdb_service.fetch_alternatives(
-        category_like=primary_category,
-        exclude_barcode=req.barcode,
-        limit=10,
-    ) if primary_category else []
+    alternatives_raw = (
+        duckdb_service.fetch_alternatives(
+            category_like=primary_category,
+            exclude_barcode=req.barcode,
+            limit=10,
+        )
+        if primary_category and product_source == "duckdb"
+        else []
+    )
 
     # Pull search context (for highlighting relevant nutrients)
     search_context = context_manager.get_intent_as_context(req.session_id or "") if req.session_id else {}

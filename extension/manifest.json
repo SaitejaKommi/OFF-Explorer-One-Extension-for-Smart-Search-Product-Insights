@@ -3,18 +3,9 @@
   "name": "OFF Explorer – Smart Food Search & Insights",
   "version": "1.0.0",
   "description": "Unified intelligent food discovery: semantic search + real-time nutritional insights from Open Food Facts.",
-  "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
-  },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "OFF Explorer",
-    "default_icon": {
-      "16": "icons/icon16.png",
-      "48": "icons/icon48.png"
-    }
+    "default_title": "OFF Explorer"
   },
   "background": {
     "service_worker": "src/background/background.js",
@@ -42,7 +33,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["src/panel/panel.html", "src/styles/*.css"],
+      "resources": ["src/styles/*.css"],
       "matches": ["<all_urls>"]
     }
   ]
