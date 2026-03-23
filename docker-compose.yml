@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data:ro
+    environment:
+      - PARQUET_GLOB=data/*.parquet
+      - DUCKDB_PATH=:memory:
+      - SLM_ENABLED=${SLM_ENABLED:-false}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://ollama:11434}
+      - DEBUG=${DEBUG:-false}
+    depends_on:
+      ollama:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Optional: Ollama for Phi-3-mini SLM
+  # Set SLM_ENABLED=true to activate
+  ollama:
+    image: ollama/ollama:latest
+    profiles:
+      - slm
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+
+volumes:
+  ollama_data:

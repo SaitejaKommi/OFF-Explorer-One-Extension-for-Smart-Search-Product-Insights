@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "OFF Explorer – Smart Food Search & Insights",
+  "version": "1.0.0",
+  "description": "Unified intelligent food discovery: semantic search + real-time nutritional insights from Open Food Facts.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "OFF Explorer",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background/background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://world.openfoodfacts.org/product/*",
+        "https://ca.openfoodfacts.org/product/*",
+        "https://fr.openfoodfacts.org/produit/*",
+        "https://world.openfoodfacts.net/product/*"
+      ],
+      "js": ["src/content/content.js"],
+      "css": ["src/styles/panel.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": [
+    "https://world.openfoodfacts.org/*",
+    "https://ca.openfoodfacts.org/*",
+    "https://fr.openfoodfacts.org/*",
+    "http://localhost:8000/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["src/panel/panel.html", "src/styles/*.css"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
