@@ -82,6 +82,8 @@ function renderResults(data) {
       const li = document.createElement("li");
       li.className = "result-item";
       li.setAttribute("role", "listitem");
+      li.setAttribute("data-barcode", product.barcode);
+      li.style.cursor = "pointer";
 
       const grade = product.nutriscore_grade || "";
       const nova = product.nova_group ? `NOVA ${product.nova_group}` : "";
@@ -101,6 +103,13 @@ function renderResults(data) {
         <div class="result-explanation">${expHtml}</div>
         <a class="result-link" href="https://ca.openfoodfacts.org/product/${product.barcode}" target="_blank">View on OFF ↗</a>
       `;
+      
+      // Add click handler to show insights
+      li.addEventListener("click", (e) => {
+        if (e.target.classList.contains("result-link")) return; // Allow link clicks
+        window.showProductInsights(product.barcode, sessionId, language);
+      });
+      
       resultsList.appendChild(li);
     });
   }
