@@ -1,0 +1,511 @@
+/* insights.css – Product Insights Panel Styling */
+
+/* Container and Layout */
+#insights-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.insights-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #ffffff 0%, #fff9f5 100%);
+    border-bottom: 3px solid var(--off-orange);
+    flex-shrink: 0;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    color: var(--off-brown);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.back-btn:hover {
+    background: rgba(255, 135, 20, 0.1);
+    color: var(--off-dark-orange);
+}
+
+.insights-title {
+    flex: 1;
+    min-width: 0;
+}
+
+.insights-title h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.insights-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    background: var(--bg-white);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Product Badges */
+.insights-badges {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nutriscore-badge, .nova-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 0.5px;
+    box-shadow: var(--shadow-sm);
+}
+
+.nutriscore-badge {
+    min-width: 50px;
+    background: linear-gradient(135deg, #038141 0%, #02a355 100%);
+}
+
+.nutriscore-badge.grade-b {
+    background: linear-gradient(135deg, #85bb2f 0%, #9ed33c 100%);
+}
+
+.nutriscore-badge.grade-c {
+    background: linear-gradient(135deg, #fecb02 0%, #ffd633 100%);
+    color: #333;
+}
+
+.nutriscore-badge.grade-d {
+    background: linear-gradient(135deg, #ee8100 0%, #ff9517 100%);
+}
+
+.nutriscore-badge.grade-e {
+    background: linear-gradient(135deg, #e63e11 0%, #ff4d1f 100%);
+}
+
+.nova-badge {
+    background: linear-gradient(135deg, #546e7a 0%, #78909c 100%);
+    min-width: 70px;
+}
+
+/* Sections */
+.section-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--off-brown);
+    margin: 0 0 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.positives-title {
+    color: #038141;
+}
+
+.risks-title {
+    color: #d32f2f;
+}
+
+/* Summary Section */
+.insights-summary {
+    padding: 14px 16px;
+    background: linear-gradient(135deg, #fff9f5 0%, #fff5eb 100%);
+    border-radius: 12px;
+    border-left: 4px solid var(--off-orange);
+    box-shadow: var(--shadow-sm);
+}
+
+#insights-health-summary {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+/* Explanations */
+.insights-explanation {
+    padding: 12px 16px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 3px solid var(--off-orange);
+}
+
+.explanation-item {
+    margin: 0;
+}
+
+.explanation-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--off-dark-orange);
+    margin: 0 0 8px 0;
+}
+
+#insights-nutri-text,
+#insights-nova-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Health Indicators */
+.insights-indicators {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.indicators-section {
+    padding: 14px 16px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border-left: 4px solid var(--border-color);
+}
+
+.indicators-section:has(.indicators-list:not(:empty)) {
+    border-left-color: var(--off-orange);
+}
+
+.indicators-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.indicator-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 10px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.indicator-item.positive {
+    background: rgba(3, 129, 65, 0.05);
+    border-color: rgba(3, 129, 65, 0.2);
+}
+
+.indicator-item.risk {
+    background: rgba(211, 47, 47, 0.05);
+    border-color: rgba(211, 47, 47, 0.2);
+}
+
+.indicator-icon {
+    font-size: 14px;
+    flex-shrink: 0;
+    min-width: 20px;
+}
+
+.indicator-content {
+    flex: 1;
+}
+
+.indicator-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 2px 0;
+}
+
+.indicator-value {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.indicator-level {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-top: 4px;
+}
+
+.indicator-level.high {
+    background: rgba(211, 47, 47, 0.15);
+    color: #c62828;
+}
+
+.indicator-level.medium {
+    background: rgba(244, 127, 23, 0.15);
+    color: #e65100;
+}
+
+.indicator-level.low {
+    background: rgba(3, 129, 65, 0.15);
+    color: #1b5e20;
+}
+
+/* Pairings Section */
+.insights-pairings {
+    padding: 14px 16px;
+    background: linear-gradient(135deg, #f0f7ff 0%, #e8f4ff 100%);
+    border-radius: 12px;
+    border-left: 4px solid var(--off-light-orange);
+}
+
+.pairings-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.pairing-tag {
+    display: inline-block;
+    padding: 6px 12px;
+    background: white;
+    border: 1px solid var(--off-light-orange);
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--off-dark-orange);
+    font-weight: 500;
+}
+
+.pairing-tag:hover {
+    background: var(--bg-hover);
+    border-color: var(--off-orange);
+    color: var(--off-brown);
+}
+
+/* Recommendations Section */
+.insights-recommendations {
+    padding: 14px 16px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border-left: 4px solid var(--off-light-orange);
+}
+
+.recommendations-list {
+    list-style: none;
+    margin: 10px 0 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.recommendations-list li {
+    font-size: 12px;
+    color: var(--text-primary);
+    padding: 6px 10px;
+    background: white;
+    border-radius: 6px;
+    border-left: 3px solid var(--off-orange);
+}
+
+.recommendations-list li::before {
+    content: "💡 ";
+    margin-right: 4px;
+}
+
+/* Alternatives Section */
+.insights-alternatives {
+    padding: 14px 16px;
+    background: linear-gradient(135deg, #fef9f0 0%, #fff5eb 100%);
+    border-radius: 12px;
+    border-left: 4px solid var(--off-orange);
+}
+
+.alternatives-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.alternative-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 12px;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.alternative-item:hover {
+    border-color: var(--off-orange);
+    box-shadow: var(--shadow-sm);
+}
+
+.alternative-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+
+.alternative-score {
+    font-size: 11px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.score-bar {
+    display: inline-block;
+    height: 4px;
+    width: 40px;
+    background: var(--border-color);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.score-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--off-orange), var(--off-light-orange));
+    border-radius: 2px;
+}
+
+.alternative-nutriscore {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    color: white;
+    background: #038141;
+}
+
+/* SLM Enhancement Badge */
+.slm-badge {
+    display: inline-block;
+    padding: 6px 10px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+}
+
+/* Loading and Error States */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--bg-light);
+    border-top: 3px solid var(--off-orange);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error {
+    padding: 12px 16px;
+    background: #ffebee;
+    border: 1px solid #ffcdd2;
+    border-radius: 8px;
+    color: #c62828;
+    font-size: 12px;
+    margin: 12px 20px 0;
+}
+
+/* Hidden State */
+.hidden {
+    display: none !important;
+}
+
+/* Empty States */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.empty-state-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+    opacity: 0.5;
+}
+
+.empty-state-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* Scrollbar Styling */
+.insights-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.insights-content::-webkit-scrollbar-track {
+    background: var(--bg-light);
+}
+
+.insights-content::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+}
+
+.insights-content::-webkit-scrollbar-thumb:hover {
+    background: var(--off-light-orange);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .insights-header {
+        padding: 12px 16px;
+    }
+
+    .insights-content {
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .section-title {
+        font-size: 13px;
+    }
+
+    .insights-badges {
+        gap: 8px;
+    }
+
+    .nutriscore-badge, .nova-badge {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+}
