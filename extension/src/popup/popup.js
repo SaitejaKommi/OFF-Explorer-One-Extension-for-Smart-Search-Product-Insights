@@ -99,7 +99,7 @@ function renderResults(data) {
           </div>
         </div>
         <div class="result-explanation">${expHtml}</div>
-        <a class="result-link" href="https://world.openfoodfacts.org/product/${product.barcode}" target="_blank">View on OFF ↗</a>
+        <a class="result-link" href="https://ca.openfoodfacts.org/product/${product.barcode}" target="_blank">View on OFF ↗</a>
       `;
       resultsList.appendChild(li);
     });

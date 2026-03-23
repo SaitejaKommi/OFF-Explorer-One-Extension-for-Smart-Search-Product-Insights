@@ -21,7 +21,6 @@ class OFFApiService:
 
     _BASE_URLS = (
         "https://ca.openfoodfacts.org",
-        "https://world.openfoodfacts.org",
     )
 
     def fetch_product_by_barcode(self, barcode: str) -> dict[str, Any] | None:
