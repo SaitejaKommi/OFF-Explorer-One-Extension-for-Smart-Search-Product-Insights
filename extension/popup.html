@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OFF Explorer</title>
+  <link rel="stylesheet" href="src/styles/popup.css" />
+</head>
+<body>
+  <div id="app">
+    <header>
+      <img src="icons/icon48.png" alt="OFF Explorer" class="logo" />
+      <h1>OFF Explorer</h1>
+    </header>
+
+    <div id="backend-status" class="status-banner hidden">
+      ⚠ Backend offline – <a href="https://github.com/SaitejaKommi/OFF-Explorer-One-Extension-for-Smart-Search-Product-Insights#setup" target="_blank">Setup guide</a>
+    </div>
+
+    <div id="search-section">
+      <div class="search-box">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="e.g. low sugar vegan snacks under 200 cal"
+          autocomplete="off"
+          aria-label="Search for food products"
+        />
+        <button id="search-btn" aria-label="Search">🔍</button>
+      </div>
+      <div id="search-hints" class="hints">
+        Try: "gluten-free high protein cereal" · "faible sucre yaourt bio"
+      </div>
+    </div>
+
+    <div id="results-section" class="hidden">
+      <div id="results-header">
+        <span id="results-count"></span>
+        <button id="clear-btn" class="btn-text">Clear</button>
+      </div>
+      <div id="relaxation-notice" class="notice hidden"></div>
+      <ul id="results-list" role="list" aria-live="polite"></ul>
+
+      <div id="refine-section" class="hidden">
+        <input
+          type="text"
+          id="refine-input"
+          placeholder='Refine: "now only gluten-free" or "which has more protein?"'
+          aria-label="Refine search"
+        />
+        <button id="refine-btn">Refine</button>
+      </div>
+    </div>
+
+    <div id="loading" class="hidden">
+      <div class="spinner" aria-label="Loading"></div>
+    </div>
+
+    <div id="error-msg" class="hidden error"></div>
+  </div>
+
+  <script type="module" src="src/popup/popup.js"></script>
+</body>
+</html>
